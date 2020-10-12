@@ -36,7 +36,7 @@ public class CodeGenerator {
 
         // 3、数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://localhost:3306/guli?serverTimezone=GMT%2B8");
+        dsc.setUrl("jdbc:mysql://39.99.221.51:3306/guli?serverTimezone=GMT%2B8");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("123456");
@@ -46,9 +46,9 @@ public class CodeGenerator {
         // 4、包配置
         PackageConfig pc = new PackageConfig();
         pc.setModuleName("eduservice"); //模块名
-        //包  com.atguigu.eduservice
+        //包  com.zzh.eduservice
         pc.setParent("com.zzh");
-        //包  com.atguigu.eduservice.controller
+        //包  com.zzh.eduservice.controller
         pc.setController("controller");
         pc.setEntity("entity");
         pc.setService("service");
