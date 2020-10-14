@@ -3,11 +3,10 @@ package com.zzh.eduservice.controller;
 import com.zzh.commonutils.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Api(tags={"登陆管理"})
+@CrossOrigin
 @RestController
 @RequestMapping("/eduservice/user")
 public class EduLoginController {
@@ -15,16 +14,15 @@ public class EduLoginController {
 
 
     @ApiOperation(value = "用户登录")
-    @PostMapping("login")
+    @PostMapping("/login")
     public R login(){
 
-        return R.ok();
+        return R.ok().data("token","admin");
     }
 
     @ApiOperation(value = "获取用户信息")
-    @PostMapping("getUserInfo")
+    @GetMapping("/getUserInfo")
     public R getUserInfo(){
-
-        return R.ok();
+        return R.ok().data("roles","[admin]").data("name","admin").data("avatar","https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
     }
 }
