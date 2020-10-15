@@ -28,6 +28,7 @@ import java.util.Map;
  */
 @Api(tags={"讲师管理"})
 @RestController
+@CrossOrigin
 @RequestMapping("/eduservice/edu-teacher")
 public class EduTeacherController {
 
@@ -42,7 +43,7 @@ public class EduTeacherController {
     }
     //逻辑删除讲师方法
     @ApiOperation(value = "根据ID删除讲师")
-    @DeleteMapping("{id}")
+    @DeleteMapping("deleteTeacher/{id}")
     public R removeById(@ApiParam(name = "id", value = "讲师ID", required = true) @PathVariable String id){
         eduTeacherService.removeById(id);
         return R.ok();
@@ -89,6 +90,8 @@ public class EduTeacherController {
         if (!StringUtils.isEmpty(end)) {
             queryWrapper.le("gmt_create", end);
         }
+        //排序
+        queryWrapper.orderByDesc("gmt_create");
         eduTeacherService.page(page,queryWrapper);
         List<EduTeacher> records = page.getRecords();
         long total = page.getTotal();
