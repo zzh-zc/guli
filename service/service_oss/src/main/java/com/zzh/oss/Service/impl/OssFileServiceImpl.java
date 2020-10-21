@@ -1,9 +1,7 @@
 package com.zzh.oss.Service.impl;
 
 import com.aliyun.oss.OSS;
-import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.OSSClientBuilder;
-import com.aliyun.oss.model.CannedAccessControlList;
 import com.zzh.commonutils.ResultCodeEnum;
 import com.zzh.oss.Service.OssFileService;
 import com.zzh.oss.utils.ConstantPropertiesUtils;
