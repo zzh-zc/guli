@@ -17,9 +17,10 @@ aliyun:
     accessKeyId: LTAI4GJpgugZVpXayYgo9PEp # 访问身份验证中用到用户标识
     accessKeySecret: xBY4dvUZ6dPdwJtZcdktKLmo2Ywpwj # 用户用于加密签名字符串和oss用来验证签名字符串的密钥
     bucketName: zzh-guli # oss的存储空间
+    fileHost: zzh
     policy:
       expire: 300 # 签名有效期(S)
     maxSize: 10 # 上传文件大小(M)
-    callback: http://39.99.221.51:1219/aliyun/oss/callback # 文件上传成功后的回调地址
+    callback: http://39.99.221.51:8001/aliyun/oss/callback # 文件上传成功后的回调地址
     dir:
       prefix: guli/images/ # 上传文件夹路径前缀
