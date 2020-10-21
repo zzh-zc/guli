@@ -42,7 +42,7 @@ public class OssFileServiceImpl implements OssFileService {
 
             //文件名：uuid.扩展名
             String original = file.getOriginalFilename();
-            String fileName = UUID.randomUUID().toString();
+            String fileName = UUID.randomUUID().toString().replaceAll("-","");
             String fileType = original.substring(original.lastIndexOf("."));
             String newName = fileName + fileType;
             String fileUrl = fileHost + "/" + filePath + "/" + newName;
