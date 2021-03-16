@@ -23,7 +23,7 @@ spring:
 
 #mybatis日志
 mybatis-plus:
-#  configuration:
-#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-  mapper-locations: classpath:com/zzh/service/*/mapper/*.xml
+  mapper-locations: classpath*:com/zzh/eduservice/mapper/xml/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
