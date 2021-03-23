@@ -2,6 +2,7 @@ package com.zzh.eduservice.service;
 
 import com.zzh.eduservice.entity.EduVideo;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zzh.eduservice.entity.form.VideoInfoForm;
 
 /**
  * <p>
@@ -13,4 +14,15 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface EduVideoService extends IService<EduVideo> {
 
+    boolean getCountByChapterId(String id);
+
+    void saveVideoInfo(VideoInfoForm videoInfoForm);
+
+    VideoInfoForm getVideoInfoFormById(String id);
+
+    void updateVideoInfoById(VideoInfoForm videoInfoForm);
+
+    boolean removeVideoById(String id);
+
+    Boolean removeByCourseId(String id);
 }

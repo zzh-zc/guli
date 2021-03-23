@@ -29,7 +29,7 @@ import java.util.Map;
 @Api(tags={"讲师管理"})
 @RestController
 @CrossOrigin
-@RequestMapping("/eduservice/edu-teacher")
+@RequestMapping("/eduservice/teacher")
 public class EduTeacherController {
 
     @Autowired
