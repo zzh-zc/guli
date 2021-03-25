@@ -29,7 +29,6 @@ import org.springframework.transaction.annotation.Transactional;
  * @since 2021-03-15
  */
 @Service
-@Transactional
 public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse> implements EduCourseService {
     @Autowired
     private EduCourseDescriptionService eduCourseDescriptionService;

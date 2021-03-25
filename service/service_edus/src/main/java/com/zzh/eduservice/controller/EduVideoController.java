@@ -6,6 +6,7 @@ import com.zzh.eduservice.client.VodClient;
 import com.zzh.eduservice.entity.EduVideo;
 import com.zzh.eduservice.entity.form.VideoInfoForm;
 import com.zzh.eduservice.service.EduVideoService;
+import com.zzh.servicebase.exceptionHandler.GuliException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -68,7 +69,10 @@ public class EduVideoController {
             @PathVariable String id){
         EduVideo eduVideo = eduVideoService.getById(id);
         if(StringUtils.isNotEmpty(eduVideo.getVideoSourceId())){
-            vodClient.removeVideo(eduVideo.getVideoSourceId());
+            R result = vodClient.removeVideo(eduVideo.getVideoSourceId());
+            if(result.getCode() == 20001){
+                throw new GuliException(20001,result.getMessage());
+            }
         }
         boolean result = eduVideoService.removeVideoById(id);
         if(result){

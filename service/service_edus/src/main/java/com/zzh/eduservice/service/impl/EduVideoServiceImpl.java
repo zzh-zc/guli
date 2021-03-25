@@ -12,6 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,6 +83,7 @@ public class EduVideoServiceImpl extends ServiceImpl<EduVideoMapper, EduVideo> i
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public Boolean removeByCourseId(String id) {
         //根据课程ID查询出所以的小节视频ID
         QueryWrapper<EduVideo> queryVideo = new QueryWrapper<>();
