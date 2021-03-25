@@ -30,9 +30,9 @@ public class BannerApiController {
     @GetMapping("getAllBanner")
     public R index() {
         QueryWrapper<CrmBanner> queryWrapper = new QueryWrapper<>();
+        queryWrapper.orderByDesc("sort");
 
-
-        List<CrmBanner> list = bannerService.selectIndexList();
+        List<CrmBanner> list = bannerService.list(queryWrapper);
         return R.ok().data("bannerList", list);
     }
 

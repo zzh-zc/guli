@@ -39,6 +39,6 @@ public class EduFrontController {
         queryTeacher.last("limit 4");
         List<EduTeacher> listTeacher = eduTeacherService.list(queryTeacher);
 
-        return R.ok().data("eduList",listCourse).data("teacherList",listTeacher);
+        return R.ok().data("courseList",listCourse).data("teacherList",listTeacher);
     }
 }
