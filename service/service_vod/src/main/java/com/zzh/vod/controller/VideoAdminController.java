@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 /**
  * Created by zzh on 2021/03/24
  */
@@ -36,5 +38,11 @@ public class VideoAdminController {
 
         videoService.removeVideo(videoId);
         return R.ok().message("视频删除成功");
+    }
+
+    @GetMapping(value = "deleteMoreVideo")
+    public R deleteMoreVideo(@RequestParam("videoIdList") List<String> videoIdList){
+        videoService.deleteMoreVideos(videoIdList);
+        return R.ok();
     }
 }

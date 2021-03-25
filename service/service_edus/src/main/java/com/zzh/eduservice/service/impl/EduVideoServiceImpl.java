@@ -1,14 +1,20 @@
 package com.zzh.eduservice.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.zzh.eduservice.client.VodClient;
 import com.zzh.eduservice.entity.EduVideo;
 import com.zzh.eduservice.entity.form.VideoInfoForm;
 import com.zzh.eduservice.mapper.EduVideoMapper;
 import com.zzh.eduservice.service.EduVideoService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zzh.servicebase.exceptionHandler.GuliException;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <p>
@@ -20,6 +26,9 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class EduVideoServiceImpl extends ServiceImpl<EduVideoMapper, EduVideo> implements EduVideoService {
+    @Autowired
+    private VodClient vodClient;
+
 
     @Override
     public boolean getCountByChapterId(String id) {
@@ -74,6 +83,20 @@ public class EduVideoServiceImpl extends ServiceImpl<EduVideoMapper, EduVideo> i
 
     @Override
     public Boolean removeByCourseId(String id) {
+        //根据课程ID查询出所以的小节视频ID
+        QueryWrapper<EduVideo> queryVideo = new QueryWrapper<>();
+        queryVideo.eq("course_id",id);
+        queryVideo.select("video_source_id");
+        List<EduVideo> eduVideos = baseMapper.selectList(queryVideo);
+        List<String> list = new ArrayList<>();
+        eduVideos.parallelStream().forEach(res ->{
+            if(StringUtils.isNotEmpty(res.getVideoSourceId())){
+                list.add(res.getVideoSourceId());
+            }
+        });
+        if(!list.isEmpty()){
+            vodClient.deleteMoreVideo(list);
+        }
         QueryWrapper<EduVideo> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("course_id", id);
         Integer count = baseMapper.delete(queryWrapper);

@@ -2,11 +2,14 @@ package com.zzh.eduservice.controller;
 
 
 import com.zzh.commonutils.R;
+import com.zzh.eduservice.client.VodClient;
+import com.zzh.eduservice.entity.EduVideo;
 import com.zzh.eduservice.entity.form.VideoInfoForm;
 import com.zzh.eduservice.service.EduVideoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +28,10 @@ import org.springframework.web.bind.annotation.*;
 public class EduVideoController {
     @Autowired
     private EduVideoService eduVideoService;
+    @Autowired
+    private VodClient vodClient;
+
+
     @ApiOperation(value = "新增课时")
     @PostMapping("saveVideoInfo")
     public R save(
@@ -59,7 +66,10 @@ public class EduVideoController {
     public R removeById(
             @ApiParam(name = "id", value = "课时ID", required = true)
             @PathVariable String id){
-
+        EduVideo eduVideo = eduVideoService.getById(id);
+        if(StringUtils.isNotEmpty(eduVideo.getVideoSourceId())){
+            vodClient.removeVideo(eduVideo.getVideoSourceId());
+        }
         boolean result = eduVideoService.removeVideoById(id);
         if(result){
             return R.ok();
