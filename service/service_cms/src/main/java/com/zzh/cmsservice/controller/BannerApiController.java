@@ -29,10 +29,7 @@ public class BannerApiController {
     @ApiOperation(value = "获取首页banner")
     @GetMapping("getAllBanner")
     public R index() {
-        QueryWrapper<CrmBanner> queryWrapper = new QueryWrapper<>();
-        queryWrapper.orderByDesc("sort");
-
-        List<CrmBanner> list = bannerService.list(queryWrapper);
+        List<CrmBanner> list = bannerService.selectIndexList();
         return R.ok().data("bannerList", list);
     }
 

@@ -5,7 +5,8 @@
     <modules>
         <module>service</module>
         <module>common</module>
-<!--        <module>common-utils</module>-->
+        <module>service_msm</module>
+        <!--        <module>common-utils</module>-->
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

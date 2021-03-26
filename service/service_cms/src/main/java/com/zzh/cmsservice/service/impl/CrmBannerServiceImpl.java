@@ -1,10 +1,12 @@
 package com.zzh.cmsservice.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zzh.cmsservice.entity.CrmBanner;
 import com.zzh.cmsservice.mapper.CrmBannerMapper;
 import com.zzh.cmsservice.service.CrmBannerService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -45,8 +47,13 @@ public class CrmBannerServiceImpl extends ServiceImpl<CrmBannerMapper, CrmBanner
 
     }
 
+//    @Cacheable(value = "banner",key = "'selectIndexList'")
     @Override
     public List<CrmBanner> selectIndexList() {
-        return null;
+        QueryWrapper<CrmBanner> queryWrapper = new QueryWrapper<>();
+        queryWrapper.orderByDesc("sort");
+        queryWrapper.last("limit 2");
+        List<CrmBanner> crmBanners = baseMapper.selectList(queryWrapper);
+        return crmBanners;
     }
 }
