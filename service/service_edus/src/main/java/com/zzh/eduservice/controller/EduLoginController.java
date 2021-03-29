@@ -5,7 +5,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
-@Api(tags={"登陆管理"})
+@Api(tags={"后台登陆管理"})
 @CrossOrigin
 @RestController
 @RequestMapping("/eduservice/user")

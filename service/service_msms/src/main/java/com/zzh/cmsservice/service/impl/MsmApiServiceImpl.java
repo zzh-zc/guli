@@ -51,5 +51,4 @@ public class MsmApiServiceImpl implements MsmApiService {
         }
         return false;
     }
-    }
 }
