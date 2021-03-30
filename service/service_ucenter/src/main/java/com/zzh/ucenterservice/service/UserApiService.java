@@ -13,4 +13,6 @@ public interface UserApiService extends IService<UcenterMember> {
     LoginVo getLoginInfo(String memberId);
 
     UcenterMember getByOpenid(String openid);
+
+    Integer countRegisterByDay(String day);
 }

@@ -93,4 +93,9 @@ public class UserApiServiceImpl extends ServiceImpl<UserMapper, UcenterMember>im
         UcenterMember user = baseMapper.selectById(openid);
         return user;
     }
+
+    @Override
+    public Integer countRegisterByDay(String day) {
+        return baseMapper.selectRegisterCount(day);
+    }
 }

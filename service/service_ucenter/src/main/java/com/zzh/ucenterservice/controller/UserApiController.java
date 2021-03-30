@@ -2,6 +2,7 @@ package com.zzh.ucenterservice.controller;
 
 import com.zzh.commonutils.R;
 import com.zzh.commonutils.utils.JwtUtils;
+import com.zzh.commonutils.vo.UcenterMemberOrder;
 import com.zzh.servicebase.exceptionHandler.GuliException;
 import com.zzh.ucenterservice.entity.UcenterMember;
 import com.zzh.ucenterservice.entity.vo.LoginVo;
@@ -61,5 +62,23 @@ public class UserApiController {
 //        UcenterMember memeber = new UcenterMember();
 //        BeanUtils.copyProperties(ucenterMember,memeber);
         return ucenterMember;
+    }
+
+    //根据token字符串获取用户信息
+    @PostMapping("getInfoUc2/{id}")
+    public UcenterMemberOrder getInfo2(@PathVariable String id) {
+        //根据用户id获取用户信息
+        UcenterMember ucenterMember = userApiService.getById(id);
+        UcenterMemberOrder memeber = new UcenterMemberOrder();
+        BeanUtils.copyProperties(ucenterMember,memeber);
+        return memeber;
+    }
+
+
+    @GetMapping(value = "countregister/{day}")
+    public R registerCount(
+            @PathVariable String day){
+        Integer count = userApiService.countRegisterByDay(day);
+        return R.ok().data("countRegister", count);
     }
 }
