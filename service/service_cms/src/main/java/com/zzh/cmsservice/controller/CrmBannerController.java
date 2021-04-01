@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.*;
  * @since 2021-03-25
  */
 @Api(tags = "banner轮播图")
-@CrossOrigin
 @RestController
 @RequestMapping("/cmsservice/banner")
 public class CrmBannerController {

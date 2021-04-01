@@ -15,7 +15,6 @@ import java.util.List;
  * Created by zzh on 2021/03/24
  */
 @Api(tags = "阿里云视频点播微服务")
-@CrossOrigin //跨域
 @RestController
 @RequestMapping("/vod/video")
 public class VideoAdminController {

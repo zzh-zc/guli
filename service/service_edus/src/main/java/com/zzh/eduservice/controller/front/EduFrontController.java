@@ -19,7 +19,6 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(value = "/eduservice/front")
-@CrossOrigin
 public class EduFrontController {
 
     @Autowired

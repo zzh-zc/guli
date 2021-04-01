@@ -20,7 +20,6 @@ import javax.servlet.http.HttpServletRequest;
  * Created by zzh on 2021/03/29
  */
 @RestController
-@CrossOrigin
 @RequestMapping("/ucenter/user")
 @Api(tags = "前台登录管理")
 public class UserApiController {
